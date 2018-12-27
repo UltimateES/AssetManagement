@@ -1,0 +1,73 @@
+{% load qr_code %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Asset Listing</title>
+  </head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <body>
+
+<br/>
+
+
+<div class="container">
+
+<h1>Asset Listing</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <div class="row">
+      <div class="col-md-2 mb-2">
+         <input type="text" class="form-control" id="inputPassword2" placeholder="Search for asset">
+       </div>
+         <div class="col-md-2 ">
+       <button type="submit" class="btn btn-primary">Search</button>
+     </div>
+     </div>
+
+    </tr>
+    <tr class="text-center">
+      <th scope="col">Asset ID</th>
+      <th scope="col">Discription</th>
+      <th scope="col">Location</th>
+      <th scope="col">Supplier</th>
+      <th scope="col">Installation Date</th>
+      <th scope="col">Commissioning Date</th>
+      <th scope="col">Manufacturer</th>
+      <th scope="col">Warranty date</th>
+      <th scope="col">Overhauling date</th>
+      <th scope="col">Codal Life</th>
+      <th scope="col">Maintainance Procedure</th>
+      <th scope="col">Maintainance History</th>
+      <th scope="col">Test Procedure</th>
+      <th scope="col">Scan Code</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for asset in asset_list%}
+      <tr class="text-center">
+      <th scope="row">{{asset.id}}</th>
+      <td>{{asset.asset_name}}</td>
+      <td>{{asset.asset_location}}</td>
+      <td>{{asset.asset_supplied_by}}</td>
+      <td>{{asset.asset_installation_date}}</td>
+      <td>{{asset.asset_commissioning_date}}</td>
+      <td>{{asset.asset_manufactured_by}}</td>
+      <td>{{asset.asset_warranty_expiration_date}}</td>
+      <td>{{asset.asset_overhauling_date}}</td>
+      <td>{{asset.asset_codallife_date}}</td>
+      <td>{{asset.asset_maintainance_procedure}}</td>
+      <td>{{asset.asset_mainatainance_history}}</td>
+      <td>{{asset.location}}</td>
+      <td>{{asset.asset_test_procedure}}</td>
+      <td>{% qr_from_text asset.id size=10 border=6 %}</td>
+    </tr>
+      {% endfor%}
+  </tbody>
+</table>
+</div>
+
+  </body>
+</html>
